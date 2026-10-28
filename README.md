@@ -24,7 +24,7 @@
 ## 1. Запустить сервер (нужен один раз, на VPS с белым IP)
 
 ```bash
-git clone https://github.com/Onigires/xlamserver xlamserver
+git clone https://github.com/Onigires/xlamserver
 python3 xlamserver/server.py
 ```
 Подойдёт любой VPS за ~3–5 $/мес (или домашний ПК с пробросом порта 7777 TCP+UDP). Параметры: `--subnet`, `--max-peers`, `--relay-mbps`.
