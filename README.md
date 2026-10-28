@@ -24,29 +24,18 @@
 ## 1. Запустить сервер (нужен один раз, на VPS с белым IP)
 
 ```bash
-node server/server.js --port 7777          # открыть порт 7777 TCP **и** UDP
-# или Docker:
-docker build -t xlam-server server && docker run -d --restart=always -p 7777:7777/tcp -p 7777:7777/udp -v xlam:/data xlam-server
+git clone https://github.com/Onigires/xlamserver xlamserver
+python3 xlamserver/server.py
 ```
 Подойдёт любой VPS за ~3–5 $/мес (или домашний ПК с пробросом порта 7777 TCP+UDP). Параметры: `--subnet`, `--max-peers`, `--relay-mbps`.
 
-## 2. Собрать приложение (Windows)
+## 2. Скачать приложение (Windows)
 
-Вариант А — двойной клик по `build-windows.bat` (нужен Node.js 20+). Результат в `dist\`: установщик и portable `.exe`.
-Вариант Б — залить проект на GitHub: workflow `.github/workflows/build.yml` соберёт `.exe` сам (вкладка Actions → Artifacts).
-
-Запуск без сборки: `npm install && npm start` (запросит права администратора — они нужны для создания адаптера).
+Перейдите в Releases, скачайте последнюю версию
 
 ## 3. Пользоваться
 
 «Создать сеть» → название, пароль, адрес сервера → «Скопировать приглашение» → отправить друзьям → они жмут «Войти в сеть».
-
-## Проверка
-
-`npm test` — сквозные тесты движка: создание/вход, прямой путь, relay, неверный пароль, подмена IP, broadcast,
-чат, переподключение после обрыва сервера.
-
-## Ограничения
 
 * Только IPv4, Windows x64 (Wintun). Движок кроссплатформенный, нужна лишь реализация TUN для Linux/macOS.
 * Для строгого (симметричного) NAT трафик идёт через сервер — скорость ограничена каналом сервера (`--relay-mbps`).
