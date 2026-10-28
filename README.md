@@ -31,7 +31,7 @@ python3 xlamserver/server.py
 
 ## 2. Скачать приложение (Windows)
 
-Перейдите в Releases, скачайте последнюю версию
+Перейдите в [Releases](https://github.com/Onigires/XlamConnect/releases/latest), скачайте последнюю версию
 
 ## 3. Пользоваться
 
