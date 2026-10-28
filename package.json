@@ -1,0 +1,31 @@
+{
+  "name": "xlam-connect",
+  "version": "1.0.0",
+  "description": "Xlam Connect — private virtual LAN with P2P and end-to-end encryption",
+  "main": "electron/main.cjs",
+  "author": "Xlam",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "server": "node server/server.js",
+    "test": "node --test test/e2e.test.js",
+    "dist": "electron-builder --win --x64"
+  },
+  "dependencies": { "koffi": "^2.9.0" },
+  "devDependencies": { "electron": "^33.2.1", "electron-builder": "^25.1.8" },
+  "build": {
+    "appId": "com.xlam.connect",
+    "productName": "Xlam Connect",
+    "icon": "assets/icon.ico",
+    "files": ["electron/**/*", "engine/**/*", "ui/**/*", "assets/icon.png", "package.json"],
+    "extraResources": [{ "from": "assets/wintun", "to": "wintun" }],
+    "asarUnpack": ["node_modules/koffi/**"],
+    "win": {
+      "target": [{ "target": "nsis", "arch": ["x64"] }, { "target": "portable", "arch": ["x64"] }],
+      "requestedExecutionLevel": "requireAdministrator"
+    },
+    "nsis": { "oneClick": false, "allowToChangeInstallationDirectory": true, "perMachine": true },
+    "portable": { "requestExecutionLevel": "admin" },
+    "artifactName": "XlamConnect-${version}-${target}.${ext}"
+  }
+}
